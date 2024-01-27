@@ -6,10 +6,13 @@ using UnityEngine;
 public class npcMove : MonoBehaviour
 {
     protected Animator animator;
+    public GameObject npcModel;
     public GameObject waypointParent;
     public float walkSpeed;
     public bool pauseAtWaypoint;
-    public float pauseDuration;
+    private float pauseDuration;
+    public bool debugMode;
+    public bool printDebug;
     private List<GameObject> waypoints;
     private GameObject destination;
     private bool walk;
@@ -21,6 +24,9 @@ public class npcMove : MonoBehaviour
         waypoints = new List<GameObject>();
         for (int i = 0; i < waypointParent.transform.childCount; ++i) {
             waypoints.Add(waypointParent.transform.GetChild(i).gameObject);
+            
+            if (!debugMode)
+                waypointParent.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
         }
 
         destination = waypoints[0];
@@ -28,38 +34,64 @@ public class npcMove : MonoBehaviour
         walk = true;
         timer = 0.0f;
 
-        animator = GetComponent<Animator>();
+        animator = npcModel.GetComponent<Animator>();
     }
 
     private GameObject getNextDestination() {
+        
+
         int index = waypoints.IndexOf(destination);
-    
+        
+        if (printDebug)
+            Debug.Log("Reached index " + index);
+
+
         if (index < waypoints.Count - 1) {
             ++index;
         } else {
             index = 0;
         }
 
+        if (printDebug)
+            Debug.Log("Next index " + index);
+
         return waypoints[index];
+    }
+
+    private bool reachedDestination() {
+        float distFromDest = Vector3.Distance(npcModel.transform.position, destination.transform.position);
+
+        if (distFromDest < 0.1)
+            return true;
+
+        return false;
     }
 
     private void walkAround() {
         if (!destination) return;
 
-        Vector3 headingDirection = (destination.transform.position - transform.position).normalized;
-        
+        Vector3 headingDirection = (destination.transform.position - npcModel.transform.position).normalized;
+
         // CHANGE DIRECTION METHOD 1
         // Quaternion headingChange = Quaternion.FromToRotation(transform.forward, headingDirection);
         // transform.localRotation *= headingChange;
 
         // CHANGE DIRECTION METHOD 2
-        transform.rotation = Quaternion.FromToRotation(Vector3.forward, headingDirection);
+        npcModel.transform.rotation = Quaternion.FromToRotation(Vector3.forward, headingDirection);
 
         float step = Time.deltaTime * walkSpeed;
-        transform.position = Vector3.MoveTowards(transform.position, destination.transform.position, step);
+        npcModel.transform.position = Vector3.MoveTowards(npcModel.transform.position, destination.transform.position, step);
 
-        if (transform.position == destination.transform.position) {
+        if (reachedDestination()) {
+
+            if (debugMode)
+                destination.GetComponent<Renderer>().material.color = Color.white;
+
             destination = getNextDestination();
+
+            if (debugMode)
+                destination.GetComponent<Renderer>().material.color = Color.green;
+
             walk = false;
             
             // change animation

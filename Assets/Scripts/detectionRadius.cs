@@ -9,10 +9,11 @@ public class detectionRadius : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    private void updateRadius(int scaler) {
+    private void updateRadius(int scaler)
+    {
         Vector3 newScale = this.transform.localScale;
         newScale.x = scaler;
         newScale.z = scaler;

@@ -67,11 +67,12 @@ public class fart : MonoBehaviour
 
     private void raiseMeter() {
         fartBar.fillAmount += (fartBarRaiseSpeed * 0.0001f);
-        ;
+        //Debug.Log("raising");
     }
 
     private void dropMeter() {
         fartBar.fillAmount -= (fartBarDropSpeed * 0.0001f);
+        //Debug.Log("dropping");
     }
 
     private void explode() {
