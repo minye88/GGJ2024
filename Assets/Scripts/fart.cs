@@ -15,7 +15,8 @@ public class fart : MonoBehaviour
     private Image fartBar;
     private float emitPeriod;
     private float emitTimer;
-    private float particleDeviation;
+    private float directionDeviation;
+    private float sizeDeviation;
 
 
     // Start is called before the first frame update
@@ -30,7 +31,8 @@ public class fart : MonoBehaviour
 
         emitPeriod = 1 / particleEmissionRate;
         emitTimer = 0.0f;
-        particleDeviation = 0.3f;
+        directionDeviation = 0.3f;
+        sizeDeviation = 0.2f;
     }
 
     private bool holdingItIn() {
@@ -49,11 +51,17 @@ public class fart : MonoBehaviour
             GameObject particle = Instantiate(fartParticle, fartParticleParent.transform);
             particle.transform.position = particleSpawnPoint.transform.position;
 
+            // randomize particle size
+            Vector3 scale = particle.transform.localScale;
+            float randomSize = scale.x + (Random.Range(0.0f, sizeDeviation) * Random.Range(0, 2));
+            scale.x = scale.y = scale.z = randomSize;
+            particle.transform.localScale = scale;
+
             // randomise direction and assign to script
             Vector3 direction = directionMarker.transform.position - particleSpawnPoint.transform.position;
-            direction.x += Random.Range(0.0f, particleDeviation);
-            direction.y += Random.Range(0.0f, particleDeviation);
-            direction.z += Random.Range(0.0f, particleDeviation);
+            direction.x += (Random.Range(0.0f, directionDeviation) * Random.Range(0, 2));
+            direction.y += (Random.Range(0.0f, directionDeviation) * Random.Range(0, 2));
+            direction.z += (Random.Range(0.0f, directionDeviation) * Random.Range(0, 2));
             //Debug.Log(direction);
             particle.GetComponent<fartParticle>().setDirection(direction);
         
