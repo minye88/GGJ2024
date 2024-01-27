@@ -112,11 +112,13 @@ public class npcMove : MonoBehaviour
     }
 
     public void stopWalking() {
+        Debug.Log("Forced to stop walking");
         forceStop = true;
     }
 
     public void startWalking()
     {
+        Debug.Log("Forced to start walking");
         forceStop = false;
     }
 

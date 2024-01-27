@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class detectionRadius : MonoBehaviour
 {
-    public GameObject fartParticleParent;
-	private Vector3 camStartPos;
-	private Vector3 camEndPos;
-	private bool moveCamera;
-	private float cameraMoveSpeed;
-	private Camera mainCamera;
-	private float journeyLength;
-	private float startTime;
+	public GameObject gameManager;
+	public GameObject fartParticleParent;
 
 	// Start is called before the first frame update
 	void Start()
     {
-		cameraMoveSpeed = 10f;
-		mainCamera = Camera.main;
 
 	}
 
@@ -36,17 +28,6 @@ public class detectionRadius : MonoBehaviour
         //Debug.Log("number of particles: " + particleCount);
         updateRadius(particleCount);
 		//Debug.Log(this.transform.localScale);
-
-		if (moveCamera) {
-
-			// Distance moved equals elapsed time times speed..
-			float distCovered = (Time.time - startTime) * cameraMoveSpeed;
-
-			// Fraction of journey completed equals current distance divided by total distance.
-			float fractionOfJourney = distCovered / journeyLength;
-
-			mainCamera.transform.position = Vector3.Lerp(camStartPos, camEndPos, fractionOfJourney);
-		}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -80,7 +61,7 @@ public class detectionRadius : MonoBehaviour
 				Debug.Log("detected by " + hit.collider.name);
 
 				// play cutscene and reset player position
-				playCaughtCutscene(other.transform.parent.gameObject);
+				gameManager.GetComponent<gameManager>().playCaughtCutscene(other.transform.parent.gameObject);
 			}
 			else 
 			{ 
@@ -92,29 +73,5 @@ public class detectionRadius : MonoBehaviour
 			//Debug.DrawRay(transform.position, raycastDirection * 1000, Color.white);
 			//Debug.Log("Did not Hit");
 		}
-	}
-
-	private void playCaughtCutscene(GameObject fartSmeller) {
-
-		if (!fartSmeller)
-			Debug.Log("Fart smeller is null");
-
-		// stop camera from following player
-		mainCamera.GetComponent<vThirdPersonCamera>().enabled = false;
-
-		// make fart smeller stop walking
-		fartSmeller.GetComponent<npcMove>().stopWalking();
-
-		// look at fart smeller
-		camStartPos = Camera.main.transform.position;
-		camEndPos = fartSmeller.transform.position;// + fartSmeller.transform.forward;
-		Debug.Log("camStartPos " + camStartPos);
-		Debug.Log("camEndPos " + camEndPos);
-		journeyLength = Vector3.Distance(camStartPos, camEndPos);
-		startTime = Time.time;
-
-		// start camera movement
-		moveCamera = true;
-
 	}
 }
