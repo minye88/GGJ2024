@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 980402214528586739}
   - component: {fileID: 4546681021074557544}
   - component: {fileID: 8453844831843608135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -1.2664089, y: -1.6573837, z: 2.83}
-  m_LocalScale: {x: 0.25, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8665429772899968614}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3612443178287727423}
   - component: {fileID: 2785058164899292032}
   - component: {fileID: 1750985825269300761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall 018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 7466686045601723802}
   - component: {fileID: 561219199281181686}
   - component: {fileID: 8519980969912434421}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7623129831588997223}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 0.75 wall with door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 7468933622811293645}
   - component: {fileID: 29183179866637434}
   - component: {fileID: 6770287741314592184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -1.2664089, y: -1.6573837, z: -3.122}
-  m_LocalScale: {x: 0.4, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3612443178287727423}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 8665429772899968614}
   - component: {fileID: 8029673363371437396}
   - component: {fileID: 8092930683676650797}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall 018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,6 +533,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 109699570829431611, guid: 70ea737c56a526b4884d2c955d8dee26, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 826829005898316395, guid: 70ea737c56a526b4884d2c955d8dee26, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2664089
@@ -572,6 +576,14 @@ PrefabInstance:
     - target: {fileID: 826829005898316395, guid: 70ea737c56a526b4884d2c955d8dee26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044379661417414651, guid: 70ea737c56a526b4884d2c955d8dee26, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055900914437327194, guid: 70ea737c56a526b4884d2c955d8dee26, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

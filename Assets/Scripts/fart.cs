@@ -46,7 +46,7 @@ public class fart : MonoBehaviour
         
         emitTimer += Time.deltaTime;
 
-        if (emitTimer >= emitPeriod) {
+        if (emitTimer >= emitPeriod && fartParticleParent.transform.childCount < particleEmissionRate) {
             // instantiate particle
             GameObject particle = Instantiate(fartParticle, fartParticleParent.transform);
             particle.transform.position = particleSpawnPoint.transform.position;

@@ -17,6 +17,7 @@ public class npcMove : MonoBehaviour
     private GameObject destination;
     private bool walk;
     private float timer;
+    private bool forceStop;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class npcMove : MonoBehaviour
 
         walk = true;
         timer = 0.0f;
+        forceStop = false;
 
         animator = npcModel.GetComponent<Animator>();
     }
@@ -109,9 +111,20 @@ public class npcMove : MonoBehaviour
         }
     }
 
+    public void stopWalking() {
+        forceStop = true;
+    }
+
+    public void startWalking()
+    {
+        forceStop = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (forceStop) return;
+
         if (walk)
             walkAround();
         else
