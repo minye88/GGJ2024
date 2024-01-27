@@ -15,7 +15,7 @@ public class fart : MonoBehaviour
     private Image fartBar;
     private float emitPeriod;
     private float emitTimer;
-    
+    private float particleDeviation;
 
 
     // Start is called before the first frame update
@@ -30,6 +30,7 @@ public class fart : MonoBehaviour
 
         emitPeriod = 1 / particleEmissionRate;
         emitTimer = 0.0f;
+        particleDeviation = 0.3f;
     }
 
     private bool holdingItIn() {
@@ -44,17 +45,16 @@ public class fart : MonoBehaviour
         emitTimer += Time.deltaTime;
 
         if (emitTimer >= emitPeriod) {
-            //instantiate particle
+            // instantiate particle
             GameObject particle = Instantiate(fartParticle, fartParticleParent.transform);
             particle.transform.position = particleSpawnPoint.transform.position;
 
-            // if (particle)   
-            //     Debug.Log("particle found");
-            // else
-            //     Debug.Log("particle not found");
-
             // randomise direction and assign to script
             Vector3 direction = directionMarker.transform.position - particleSpawnPoint.transform.position;
+            direction.x += Random.Range(0.0f, particleDeviation);
+            direction.y += Random.Range(0.0f, particleDeviation);
+            direction.z += Random.Range(0.0f, particleDeviation);
+            //Debug.Log(direction);
             particle.GetComponent<fartParticle>().setDirection(direction);
         
             emitTimer = 0.0f;
