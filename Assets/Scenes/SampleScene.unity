@@ -24898,7 +24898,9 @@ MonoBehaviour:
     - Mouse: Move the Camera
 
     - Left Mouse
-    Button: Hold it in'
+    Button: Hold it in
+
+    - R: Respawn'
 --- !u!222 &1708926565
 CanvasRenderer:
   m_ObjectHideFlags: 0

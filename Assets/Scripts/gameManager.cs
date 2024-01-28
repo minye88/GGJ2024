@@ -49,6 +49,13 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (Input.GetKey(KeyCode.R))
+        {
+            Debug.Log("FORCE RESPAWN");
+			player.GetComponent<CapsuleCollider>().enabled = false;
+			player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
+        }
+
 		if (moveCamera)
 		{
 			float debugDist = Vector3.Distance(mainCamera.transform.position, camEndPos);
