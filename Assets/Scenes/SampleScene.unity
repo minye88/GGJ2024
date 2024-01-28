@@ -6958,6 +6958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2018132412}
+  winTarget: {fileID: 1189762167}
 --- !u!1 &451437468
 GameObject:
   m_ObjectHideFlags: 0
@@ -17530,6 +17531,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1434018957680533029, guid: 49e948fe26356c64e9bccc46963c77da, type: 3}
   m_PrefabInstance: {fileID: 1178693902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1189762167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2782335935915641654, guid: e6e480259fa42594dac968805d34be8e, type: 3}
+  m_PrefabInstance: {fileID: 146142170437457196}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1189762169 stripped
 Transform:

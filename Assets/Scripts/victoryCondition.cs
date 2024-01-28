@@ -6,7 +6,7 @@ using TMPro;
 public class victoryCondition : MonoBehaviour
 {
     public GameObject player;
-    private bool playerWon;
+    public bool playerWon;
 
     private Vector3 camStartPos;
     private Vector3 camEndPos;
@@ -127,8 +127,6 @@ public class victoryCondition : MonoBehaviour
 					player.GetComponent<CapsuleCollider>().enabled = false;
 					player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
                     Debug.Log("VICTORY TELEPORTED");
-
-                    playerWon = false;
 
                     GameObject.Find("Detection Radius").GetComponent<detectionRadius>().resumeCollision();
 

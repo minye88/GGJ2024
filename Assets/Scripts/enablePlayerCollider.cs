@@ -5,6 +5,7 @@ using UnityEngine;
 public class enablePlayerCollider : MonoBehaviour
 {
     public GameObject player;
+    public GameObject winTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,8 @@ public class enablePlayerCollider : MonoBehaviour
             player.GetComponent<CapsuleCollider>().enabled = true;
             //GameObject.Find("House").SetActive(true);
             //Debug.Log("COLLIDER ON");
+
+            winTarget.GetComponent<victoryCondition>().playerWon = false;
         }
     }
 }
