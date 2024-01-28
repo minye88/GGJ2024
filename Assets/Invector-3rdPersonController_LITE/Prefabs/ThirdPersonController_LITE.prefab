@@ -733,8 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60128f449cb8a64499ba168147f4e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fartBarRaiseSpeed: 10
-  fartBarDropSpeed: 5
+  fartBarRaiseSpeed: 20
+  fartBarDropSpeed: 10
   particleEmissionRate: 15
   fartParticle: {fileID: 7611678936141774598, guid: fe69f9711b3eca246bd74c0ca8f85df1, type: 3}
   fartParticleParent: {fileID: 0}
@@ -742,6 +742,9 @@ MonoBehaviour:
   particleSpawnPoint: {fileID: 9043408696954079128}
   fartSoundObject: {fileID: 905092081717105716}
   explosionSoundObject: {fileID: 1684406972303835615}
+  detectionRadius: {fileID: 5927753966420015479}
+  poop: {fileID: 3689125573265907966, guid: 6c89caf146c12ca48a75c7ba86d6ba2a, type: 3}
+  poops: {fileID: 0}
 --- !u!1 &4425428723094576442
 GameObject:
   m_ObjectHideFlags: 0

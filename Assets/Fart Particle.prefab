@@ -120,4 +120,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimiseRate: 1
   slowRate: 1
-  lifetime: 1
+  lifetime: 0.5

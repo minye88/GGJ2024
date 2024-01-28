@@ -19,7 +19,7 @@ public class enablePlayerCollider : MonoBehaviour
         //Debug.Log(distanceFromPlayer);
 
 
-        if (distanceFromPlayer <= 5.0f) { 
+        if (distanceFromPlayer <= 10.0f) { 
             player.GetComponent<CapsuleCollider>().enabled = true;
             //GameObject.Find("House").SetActive(true);
             //Debug.Log("COLLIDER ON");

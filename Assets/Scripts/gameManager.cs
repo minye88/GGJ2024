@@ -37,7 +37,7 @@ public class gameManager : MonoBehaviour
 		dialoguePauseTimer = 0.0f;
 
 		dialogueLines = new List<string>();
-		dialogueLines.Add("OH GOD MY NOSE");
+		dialogueLines.Add("OH GOD THE SMELL");
 		dialogueLines.Add("OMG GET OUT");
 		dialogueLines.Add("STOP FARTING");
 		dialogueLines.Add("THIS GUY JUST DROPPED A BOMB");
@@ -88,6 +88,7 @@ public class gameManager : MonoBehaviour
 					player.GetComponent<CapsuleCollider>().enabled = false;
 					//player.GetComponent<Rigidbody>().MovePosition(respawnPoint.transform.position);
 					player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
+					Debug.Log("CAUGHT TELEPORTED");
 
 					detectionRadius.GetComponent<detectionRadius>().resumeCollision();
 

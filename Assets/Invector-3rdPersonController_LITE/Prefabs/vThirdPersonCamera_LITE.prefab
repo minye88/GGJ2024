@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2700874171910072506}
   - component: {fileID: 3851937974465073233}
   - component: {fileID: 2700874171910072507}
+  - component: {fileID: 932670826411340946}
   m_Layer: 0
   m_Name: vThirdPersonCamera_LITE
   m_TagString: MainCamera
@@ -145,3 +146,15 @@ MonoBehaviour:
   currentStateName: 
   currentTarget: {fileID: 0}
   movementSpeed: {x: 0, y: 0}
+--- !u!114 &932670826411340946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700874171910072504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af99ebcf89200cf4582717a3a7bc7012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -54,7 +54,7 @@ public class detectionRadius : MonoBehaviour
 		GetComponent<CapsuleCollider>().enabled = true;
 	}
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
 		//// Use raycast to check if there is a wall in between player and NPC
 		// Bit shift the index of the layer (7) to get a bit mask.
@@ -85,9 +85,7 @@ public class detectionRadius : MonoBehaviour
 				Debug.Log("detected by " + hit.collider.name);
 
 				pauseCollision();
-
 				radiusModifier = 0.0f;
-				// play cutscene and reset player position
 				gameManager.GetComponent<gameManager>().playCaughtCutscene(other.transform.parent.gameObject);
 			}
 			else 

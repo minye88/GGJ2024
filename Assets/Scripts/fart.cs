@@ -22,6 +22,8 @@ public class fart : MonoBehaviour
     private float directionDeviation;
     private float sizeDeviation;
     public GameObject detectionRadius;
+    public GameObject poop;
+    public GameObject poops;
 
     // Start is called before the first frame update
     void Start()
@@ -102,6 +104,13 @@ public class fart : MonoBehaviour
 
         float currentRadiusModifier = detectionRadius.GetComponent<detectionRadius>().getRadiusModifier();
         detectionRadius.GetComponent<detectionRadius>().setRadiusModifier(currentRadiusModifier + 5.0f);
+
+        // camera shake
+        Camera.main.GetComponent<cameraShake>().shake(2f);
+
+        // create shit on the ground
+        GameObject newPoop = Instantiate(poop, poops.transform);
+        newPoop.transform.position = transform.position;
     }
 
     private bool checkMeterFull() {
