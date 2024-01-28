@@ -128,6 +128,8 @@ public class victoryCondition : MonoBehaviour
 					player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
                     Debug.Log("VICTORY TELEPORTED");
 
+                    playerWon = false;
+
                     GameObject.Find("Detection Radius").GetComponent<detectionRadius>().resumeCollision();
 
 					mainCamera.GetComponent<vThirdPersonCamera>().enabled = true;

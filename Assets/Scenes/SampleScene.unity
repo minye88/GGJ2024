@@ -5990,7 +5990,7 @@ PrefabInstance:
       objectReference: {fileID: 373967961}
     - target: {fileID: 8163329311367755028, guid: fc9b148a2950aaf4cba8422632222c5d, type: 3}
       propertyPath: fartBarRaiseSpeed
-      value: 5
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 8163329311367755028, guid: fc9b148a2950aaf4cba8422632222c5d, type: 3}
       propertyPath: fartParticleParent
