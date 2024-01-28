@@ -12,12 +12,16 @@ public class fart : MonoBehaviour
     public GameObject fartParticleParent;
     public GameObject directionMarker;
     public GameObject particleSpawnPoint;
+    public GameObject fartSoundObject;
+    private AudioSource fartSound;
+    public GameObject explosionSoundObject;
+    private AudioSource explosionSound;
     private Image fartBar;
     private float emitPeriod;
     private float emitTimer;
     private float directionDeviation;
     private float sizeDeviation;
-
+    public GameObject detectionRadius;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,9 @@ public class fart : MonoBehaviour
         emitTimer = 0.0f;
         directionDeviation = 0.3f;
         sizeDeviation = 0.2f;
+
+        fartSound = fartSoundObject.GetComponent<AudioSource>();
+        explosionSound = explosionSoundObject.GetComponent<AudioSource>();
     }
 
     private bool holdingItIn() {
@@ -67,10 +74,14 @@ public class fart : MonoBehaviour
         
             emitTimer = 0.0f;
         }
+
+        if (!fartSound.isPlaying)
+            fartSound.Play();
     }
 
     private void stopFarting() {
-
+       if (fartSound.isPlaying)
+           fartSound.Pause();
     }
 
     private void raiseMeter() {
@@ -84,10 +95,19 @@ public class fart : MonoBehaviour
     }
 
     private void explode() {
+        Debug.Log("explode");
 
+        fartBar.fillAmount = 0.0f;
+        explosionSound.Play();
+
+        float currentRadiusModifier = detectionRadius.GetComponent<detectionRadius>().getRadiusModifier();
+        detectionRadius.GetComponent<detectionRadius>().setRadiusModifier(currentRadiusModifier + 5.0f);
     }
 
     private bool checkMeterFull() {
+        if (fartBar.fillAmount >= 1.0f)
+            return true;
+
         return false;
     }
 

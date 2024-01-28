@@ -6,29 +6,53 @@ public class detectionRadius : MonoBehaviour
 {
 	public GameObject gameManager;
 	public GameObject fartParticleParent;
+	private bool collisionPaused;
+	private float radiusModifier;
 
 	// Start is called before the first frame update
 	void Start()
     {
-
+		collisionPaused = false;
+		radiusModifier = 0.0f;
 	}
 
     private void updateRadius(int scaler)
     {
         Vector3 newScale = this.transform.localScale;
-        newScale.x = scaler;
-        newScale.z = scaler;
+        newScale.x = scaler + radiusModifier;
+        newScale.z = scaler + radiusModifier;
         this.transform.localScale = newScale;
     }
+
+	public void setRadiusModifier(float value) {
+		radiusModifier = value;
+	}
+
+	public float getRadiusModifier() {
+		return radiusModifier;
+	}
 
     // Update is called once per frame
     void Update()
     {
-        int particleCount = fartParticleParent.transform.childCount;
+		if (collisionPaused) return;
+
+		int particleCount = fartParticleParent.transform.childCount;
         //Debug.Log("number of particles: " + particleCount);
         updateRadius(particleCount);
 		//Debug.Log(this.transform.localScale);
     }
+
+	public void pauseCollision() {
+		collisionPaused = true;
+		this.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+		GetComponent<CapsuleCollider>().enabled = false;
+	}
+
+	public void resumeCollision() {
+		collisionPaused = false;
+		GetComponent<CapsuleCollider>().enabled = true;
+	}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -60,6 +84,9 @@ public class detectionRadius : MonoBehaviour
 			{
 				Debug.Log("detected by " + hit.collider.name);
 
+				pauseCollision();
+
+				radiusModifier = 0.0f;
 				// play cutscene and reset player position
 				gameManager.GetComponent<gameManager>().playCaughtCutscene(other.transform.parent.gameObject);
 			}

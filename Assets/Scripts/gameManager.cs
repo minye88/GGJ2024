@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -18,6 +20,12 @@ public class gameManager : MonoBehaviour
 	private float dialoguePauseTimer;
 	public GameObject player;
 	public GameObject respawnPoint;
+	public GameObject speechBubble;
+	public GameObject speechText;
+	public GameObject detectionRadius;
+	private List<string> dialogueLines;
+	private bool dialogueOnCooldown;
+	private float dialogueCooldownTimer;
 
 	// Start is called before the first frame update
 	void Start()
@@ -27,6 +35,15 @@ public class gameManager : MonoBehaviour
 		cameraCutsceneOffset = new Vector3(0, 1.75f, 0);
 		dialoguePauseDuration = 5f;
 		dialoguePauseTimer = 0.0f;
+
+		dialogueLines = new List<string>();
+		dialogueLines.Add("OH GOD MY NOSE");
+		dialogueLines.Add("OMG GET OUT");
+		dialogueLines.Add("STOP FARTING");
+		dialogueLines.Add("THIS GUY JUST DROPPED A BOMB");
+
+		dialogueOnCooldown = false;
+		dialogueCooldownTimer = 0.0f;
 	}
 
     // Update is called once per frame
@@ -53,9 +70,10 @@ public class gameManager : MonoBehaviour
 
 			if (Vector3.Distance(mainCamera.transform.position, camEndPos) <= 0.1f) {
 				//Debug.Log("camera reached destination.");
-				
+
 
 				// show dialogue box (with randomized lines)
+				showSpeechBubble();
 
 				dialoguePauseTimer += Time.deltaTime;
 
@@ -63,9 +81,15 @@ public class gameManager : MonoBehaviour
 					Debug.Log("Dialogue pause finished.");
 					dialoguePauseTimer = 0.0f;
 
+					hideSpeechBubble();
+
 					// teleport player back to lobby
+					//GameObject.Find("House").SetActive(false);
+					player.GetComponent<CapsuleCollider>().enabled = false;
 					//player.GetComponent<Rigidbody>().MovePosition(respawnPoint.transform.position);
 					player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
+
+					detectionRadius.GetComponent<detectionRadius>().resumeCollision();
 
 					mainCamera.GetComponent<vThirdPersonCamera>().enabled = true;
 
@@ -76,6 +100,37 @@ public class gameManager : MonoBehaviour
 				}	
 			}
 		}
+	}
+
+	private void showSpeechBubble() {
+
+		if (dialogueOnCooldown) {
+			dialogueCooldownTimer += Time.deltaTime;
+
+			if (dialogueCooldownTimer > dialoguePauseDuration) { 
+				dialogueOnCooldown = false;
+				dialogueCooldownTimer = 0.0f;
+			}
+
+			return;
+		}
+
+		//randomize text here
+		int randomIndex = Random.Range(0, dialogueLines.Count);
+		speechText.GetComponent<TextMeshProUGUI>().text = dialogueLines[randomIndex];
+
+		//speechBubble.GetComponent<Image>().enabled = true;
+		speechBubble.SetActive(true);
+
+		//speechText.GetComponent<TextMeshPro>().enabled = true;
+		speechText.SetActive(true);
+
+		dialogueOnCooldown = true;
+	}
+
+	private void hideSpeechBubble() {
+		speechBubble.SetActive(false);
+		speechText.SetActive(false);
 	}
 
 	public void playCaughtCutscene(GameObject fartSmeller)
