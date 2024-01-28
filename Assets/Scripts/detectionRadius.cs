@@ -8,6 +8,7 @@ public class detectionRadius : MonoBehaviour
 	public GameObject fartParticleParent;
 	private bool collisionPaused;
 	private float radiusModifier;
+	public float discount;
 
 	// Start is called before the first frame update
 	void Start()
@@ -18,9 +19,10 @@ public class detectionRadius : MonoBehaviour
 
     private void updateRadius(int scaler)
     {
-        Vector3 newScale = this.transform.localScale;
-        newScale.x = scaler + radiusModifier;
-        newScale.z = scaler + radiusModifier;
+        float updateScaler = scaler * discount;
+		Vector3 newScale = this.transform.localScale;
+        newScale.x = updateScaler + radiusModifier;
+        newScale.z = updateScaler + radiusModifier;
         this.transform.localScale = newScale;
     }
 
