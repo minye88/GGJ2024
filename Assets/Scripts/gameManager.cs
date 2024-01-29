@@ -33,7 +33,7 @@ public class gameManager : MonoBehaviour
 		cameraMoveSpeed = 10f;
 		mainCamera = Camera.main;
 		cameraCutsceneOffset = new Vector3(0, 1.75f, 0);
-		dialoguePauseDuration = 5f;
+		dialoguePauseDuration = 2.5f;
 		dialoguePauseTimer = 0.0f;
 
 		dialogueLines = new List<string>();
