@@ -29,7 +29,9 @@ public class gameManager : MonoBehaviour
 
 	private void Awake()
 	{
-		Cursor.lockState = CursorLockMode.Confined;
+		Cursor.lockState = CursorLockMode.Confined; // keep confined in the game window
+		//Cursor.lockState = CursorLockMode.Locked;   // keep confined to center of screen
+		//Cursor.lockState = CursorLockMode.None;     // set to default default
 	}
 
 	// Start is called before the first frame update
@@ -59,11 +61,13 @@ public class gameManager : MonoBehaviour
             Debug.Log("FORCE RESPAWN");
 			player.GetComponent<CapsuleCollider>().enabled = false;
 			player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
-        }
+			detectionRadius.GetComponent<CapsuleCollider>().enabled = false;
+		}
 
 		if (Input.GetKey(KeyCode.Escape))
         {
             Debug.Log("FORCE QUIT");
+			Cursor.lockState = CursorLockMode.None;     // set to default default
 			Application.Quit();
 		}
 

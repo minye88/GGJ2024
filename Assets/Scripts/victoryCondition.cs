@@ -126,6 +126,7 @@ public class victoryCondition : MonoBehaviour
 					// teleport player back to lobby
 					player.GetComponent<CapsuleCollider>().enabled = false;
 					player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
+                    player.transform.Find("Detection Radius").GetComponent<CapsuleCollider>().enabled = false;
                     Debug.Log("VICTORY TELEPORTED");
 
                     GameObject.Find("Detection Radius").GetComponent<detectionRadius>().resumeCollision();
