@@ -24852,8 +24852,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 10}
-  m_SizeDelta: {x: 300, y: 130}
+  m_AnchoredPosition: {x: 160, y: 60}
+  m_SizeDelta: {x: 300, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708926563
 MonoBehaviour:
@@ -24903,14 +24903,18 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- WASD: Move the Character
+  m_Text: '- WASD: Walk
 
-    - Mouse: Move the Camera
+    - Mouse: Look around
 
-    - Left Mouse
-    Button: Hold it in
+    - Left Mouse Button: Hold
+    it in
 
-    - R: Respawn'
+    - Left Shift: Run
+
+    - R: Respawn
+
+    - Escape: Quit game'
 --- !u!222 &1708926565
 CanvasRenderer:
   m_ObjectHideFlags: 0

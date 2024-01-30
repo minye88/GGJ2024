@@ -27,6 +27,11 @@ public class gameManager : MonoBehaviour
 	private bool dialogueOnCooldown;
 	private float dialogueCooldownTimer;
 
+	private void Awake()
+	{
+		Cursor.lockState = CursorLockMode.Confined;
+	}
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -55,6 +60,12 @@ public class gameManager : MonoBehaviour
 			player.GetComponent<CapsuleCollider>().enabled = false;
 			player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
         }
+
+		if (Input.GetKey(KeyCode.Escape))
+        {
+            Debug.Log("FORCE QUIT");
+			Application.Quit();
+		}
 
 		if (moveCamera)
 		{
