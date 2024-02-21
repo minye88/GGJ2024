@@ -9,7 +9,7 @@ public class detectionRadius : MonoBehaviour
 	private bool collisionPaused;
 	private float radiusModifier;
 	public float discount;
-	private Vector3 targetScale;
+	public Vector3 targetScale;
 	private float lerpSpeed;
 
 	// Start is called before the first frame update
@@ -17,17 +17,16 @@ public class detectionRadius : MonoBehaviour
     {
 		collisionPaused = false;
 		radiusModifier = 0.0f;
-		lerpSpeed = 0.1f;
+		lerpSpeed = 0.05f;
 	}
 
 	// update smell radius size
     private void updateRadius(int scaler)
     {
         float updateScaler = scaler * discount;
-		Vector3 newScale = this.transform.localScale;
-        newScale.x = updateScaler + radiusModifier;
-        newScale.z = updateScaler + radiusModifier;
-		targetScale = newScale;
+		targetScale = this.transform.localScale;
+		targetScale.x = updateScaler + radiusModifier;
+		targetScale.z = updateScaler + radiusModifier;
     }
 
 	public void setRadiusModifier(float value) {
@@ -43,10 +42,13 @@ public class detectionRadius : MonoBehaviour
 			Vector3 newScale = new Vector3(this.transform.localScale.x + lerpSpeed,
 										   this.transform.localScale.y,
 										   this.transform.localScale.z + lerpSpeed);
+
+			this.transform.localScale = newScale;
 		} else if (this.transform.localScale.x > targetScale.x) {
 			Vector3 newScale = new Vector3(this.transform.localScale.x - lerpSpeed,
 										   this.transform.localScale.y,
 										   this.transform.localScale.z - lerpSpeed);
+			this.transform.localScale = newScale;
 		}
 	}
 
