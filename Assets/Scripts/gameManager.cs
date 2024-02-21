@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
 	private List<string> dialogueLines;
 	private bool dialogueOnCooldown;
 	private float dialogueCooldownTimer;
+	public GameObject playerPrefab;
 
 	private void Awake()
 	{
@@ -105,13 +106,17 @@ public class gameManager : MonoBehaviour
 
 					hideSpeechBubble();
 
-					// teleport player back to lobby
+					//// respawn method 1: teleport player back to lobby
 					//GameObject.Find("House").SetActive(false);
 					player.GetComponent<CapsuleCollider>().enabled = false;
 					//player.GetComponent<Rigidbody>().MovePosition(respawnPoint.transform.position);
 					player.GetComponent<Rigidbody>().position = respawnPoint.transform.position;
 					Debug.Log("CAUGHT TELEPORTED");
 
+					//// respawn method 2: destroy and instantiate, requires reassigning references.
+					//Destroy(player);
+					//GameObject newPlayer = Instantiate(playerPrefab, respawnPoint.transform.position, Quaternion.identity);
+					
 					detectionRadius.GetComponent<detectionRadius>().resumeCollision();
 
 					mainCamera.GetComponent<vThirdPersonCamera>().enabled = true;

@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 999934e3585860f46a1fc6c47652814c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60128f449cb8a64499ba168147f4e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fartBarRaiseSpeed: 20
+  fartBarRaiseSpeed: 7.5
   fartBarDropSpeed: 10
   particleEmissionRate: 15
   fartParticle: {fileID: 7611678936141774598, guid: fe69f9711b3eca246bd74c0ca8f85df1, type: 3}
@@ -3826,6 +3826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   fartParticleParent: {fileID: 0}
+  discount: 0.8
 --- !u!1 &7143595833280082807
 GameObject:
   m_ObjectHideFlags: 0
